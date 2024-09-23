@@ -1,24 +1,20 @@
-package dpath
+package dcleave
 
 import "github.com/ewapet/event-dispatcher/dispatcher"
 
-type PathFinder struct {
+type Traverser struct {
 	translator Translator
 	dispatcher dispatcher.EventDispatcher[EventID, Event]
 }
 
-func New(translator Translator) *PathFinder {
-	return &PathFinder{
+func NewTraverser(translator Translator) *Traverser {
+	return &Traverser{
 		translator: translator,
 		dispatcher: dispatcher.New[EventID, Event](nil),
 	}
 }
 
-func NewJsonPathFinder() *PathFinder {
-	return New(NewJsonTranslator())
-}
-
-func (e PathFinder) GetPath(locationPath []any, subject any) (any, bool) {
+func (e Traverser) Get(subject any, locationPath []any) (any, bool) {
 	if len(locationPath) == 0 {
 		return nil, false
 	}
@@ -38,7 +34,7 @@ func (e PathFinder) GetPath(locationPath []any, subject any) (any, bool) {
 	return nextResult, ok
 }
 
-func (e PathFinder) SetPath(locationPath []any, subject any, value any) bool {
+func (e Traverser) Put(subject any, value any, locationPath []any) bool {
 	if len(locationPath) == 0 {
 		return false
 	}

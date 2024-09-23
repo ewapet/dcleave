@@ -1,4 +1,4 @@
-module github.com/ewapet/dpath
+module github.com/ewapet/dcleave
 
 go 1.22.3
 

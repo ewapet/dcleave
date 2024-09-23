@@ -37,7 +37,6 @@ func (s *SliceStack[T]) Pop() T {
 	if s.IsEmpty() {
 		panic("Invalid operation - stack is empty")
 	}
-	// TODO: Maybe zero the current value
 	s.nextPushPosition -= 1
 	return s.elements[s.nextPushPosition]
 }

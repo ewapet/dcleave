@@ -1,4 +1,4 @@
-package dpath
+package dcleave
 
 type Translator interface {
 	InitialFrame() TranslationFrame
